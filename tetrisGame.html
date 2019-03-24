@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Tetris Game </title>
+    <style type="text/css">
+        body {background-color: rgb(80, 141, 255); font-family: Helvetica, sans-serif;}        
+        #canvas-div {
+            margin-left: 40%;
+        }
+        #gameBox {
+            padding: 1rem; border: 4px solid black; border-radius: 10px; background-color: rgba(248, 248, 248, 0.24); 
+        } 
+        .score {
+            margin-left: 200px;
+            float: left;
+        }
+    </style>
+</head>
+<script id="vertex-shader" type="x-shader/x-vertex">
+
+attribute vec4 vPosition;
+attribute vec3 vertColor;
+varying vec3 fragColor;
+
+void
+main()
+{
+    fragColor = vertColor;
+    gl_Position = vPosition;
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+
+varying vec3 fragColor;
+void
+main()
+{
+    gl_FragColor = vec4( fragColor, 0.9 );
+}
+</script>
+
+
+
+<body>
+    <h1 align="center">Welcome To Tetris Game!</h1>
+    <div id="gameBox">
+        <div class="score">
+            <h2 id="currScore"></h2><br />
+            <h2 id="highestScore"></h2><br />
+            <h2> Press 'q' to Quit Game </h2> <br />
+            <h2> Press 'r' to Restart Game</h2>
+        </div>
+        <div id="canvas-div" align="center">
+            <canvas id="gl-canvas" width="300" height="600">>
+            Oops ... your browser doesn't support the HTML5 canvas element
+            </canvas>
+        </div>
+    </div>
+    <script type="text/javascript" src="./Common/webgl-utils.js"></script>
+    <script type="text/javascript" src="./Common/initShaders.js"></script>
+    <script type="text/javascript" src="./Common/MV.js"></script>
+    <script type="text/javascript" src="./tetrisGame.js"></script>
+</body>
+</html>
